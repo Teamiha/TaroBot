@@ -1,5 +1,6 @@
 {
   "imports": {
-    "@std/colors": "https://deno.land/x/cliffy@v0.25.7/ansi/colors.ts"
+    "@std/colors": "https://deno.land/x/cliffy@v0.25.7/ansi/colors.ts",
+    "@grammyjs/bot": "https://deno.land/x/grammy@v1.30.0/mod.ts"
   }
 }
