@@ -1,7 +1,10 @@
-import { Bot } from "@grammyjs/bot";
+import { Bot, InlineKeyboard } from "@grammyjs/bot";
 
 
 const bot = new Bot("7593247270:AAF296ILhtKs3fBafeHqR_1XLOLz5Akx7PU"); // <-- put your bot token between the ""
+
+const keyboard = new InlineKeyboard().text("📦", "parcel")
+
 
 const replies: Record<string, string> = {
     "Привет!": "И тебе привет!",
@@ -9,14 +12,18 @@ const replies: Record<string, string> = {
     "Как дела?": "Всё отлично, а у тебя?",
   };
 
-bot.command("start", (ctx) => ctx.reply("Welcome! Up and running."));
+  bot.command("start", async (ctx) => {
+    await ctx.reply("Выберите действие:", {
+      reply_markup: keyboard, // Подключаем клавиатуру к сообщению
+    });
+  });
 
-// bot.on("message:text", async (ctx) => {
-//     if (ctx.message.text === "Покажи стикер") {
-//       // Ответить стикером
-//       await ctx.replyWithSticker("CAACAgIAAxkBAAMLZxUZga2vQ_6WRs2XWwb_hEL773AAAvkHAAJFUZMOYcv-eWLVIEY2BA");
-//     }
-//   });
+bot.callbackQuery("parcel", async (ctx) => {
+    await ctx.answerCallbackQuery(); // Закрываем всплывающее окно
+    await ctx.reply("Вам посылка!");  // Отправляем сообщение
+  });
+  
+bot.command("test", (ctx) => ctx.replyWithSticker("CAACAgIAAxkBAAMLZxUZga2vQ_6WRs2XWwb_hEL773AAAvkHAAJFUZMOYcv-eWLVIEY2BA"));
 
   bot.on("message:text", async (ctx) => {
     const message = ctx.message.text;
