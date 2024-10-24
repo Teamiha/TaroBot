@@ -1,7 +1,8 @@
 import { Bot, InlineKeyboard, } from "@grammyjs/bot";
 
+import { token } from "./token.ts";
 
-const bot = new Bot("7593247270:AAF296ILhtKs3fBafeHqR_1XLOLz5Akx7PU"); // <-- put your bot token between the ""
+const bot = new Bot(token); // <-- put your bot token between the ""
 
 const keyboard = new InlineKeyboard().text("📦", "parcel")
 
